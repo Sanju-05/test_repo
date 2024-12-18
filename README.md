@@ -15,7 +15,7 @@ To set up and run the project, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Emilj0sE/Hexnode
+   git clone https://github.com/Sanju-05/test_repo.git
 
 2. Open index.html in your preferred browser to view the project.
     Alternatively, you can run the project using a live server like Live Server in VSCode.

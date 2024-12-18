@@ -43,6 +43,17 @@ ul,li,a{
 }
 
 /* Header style */
+body.open{
+    overflow: hidden;
+}
+#page-cover.open{
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000069;
+    position: fixed;
+    z-index: 98;
+    overflow: hidden;
+}
 header {
     position: fixed;
     background-color: rgb(2, 10, 25);
@@ -102,7 +113,7 @@ header .burger-menu {
     width: 24px;
     height: 20px;
     cursor: pointer;
-    z-index: 99;
+    z-index: 100;
 }
 
 header .burger-menu .line {
@@ -112,6 +123,9 @@ header .burger-menu .line {
     width: 100%;
     display: block;
     transition: all 0.3s ease;
+}
+header.scrolled ul a{
+    color: #000;
 }
 header.scrolled .burger-menu .line {
     background-color: #000; /* Line color */
@@ -144,7 +158,7 @@ header .side-menu {
     background-color: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    z-index: 98;
+    z-index: 99;
     display: none;
 }
 
@@ -236,6 +250,7 @@ header .side-header-btn.trial:hover{
     max-width: 280px;
     border: none;
     border-style: none;
+    outline: none;
 }
 .hero-banner button{
     background-color: rgb(221, 7, 53);
@@ -498,10 +513,189 @@ header .side-header-btn.trial:hover{
     line-height: 28px;
 }
 
+
+/* Accordian Section */
+
+.accordian{
+    background-color: rgb(247, 247, 247);
+    padding: 80px 0px;
+}
+.accordian .outer-wrapper{
+    max-width:var(--max-width);
+}
+.accordian .outer-wrapper h2{
+    color: rgb(2, 10, 25);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.accordian .outer-wrapper p{
+    color: rgb(51, 51, 51);
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+}
+.accordian .accordian-wrap{
+    padding-top: 50px;
+}
+.accordian .accordian-wrap{
+    display: flex;
+    /* width: 80%; */
+    gap: 40px;
+}
+.accordian .accordian-wrap .image-container {
+    flex: 1;
+    max-height: 565px;
+    /* max-width: 600px; */
+    overflow: hidden;
+    position: relative;
+}
+.accordian .accordian-wrap .image-track {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.8s ease-in-out;
+}
+.accordian .accordian-wrap .image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+.accordian .accordian-wrap .accordion {
+    min-height: 620px;
+    max-width: 700px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+}
+.accordian .accordian-wrap .accordion-item {
+    /* border: 1px solid #ddd; */
+    overflow: hidden;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.accordian .accordian-wrap .accordion-item.active .content{
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgb(215, 215, 215);
+    margin: 0;
+}
+.accordian .accordian-wrap .content{
+    margin: 0px 20px;
+    border-bottom: 1px solid rgb(215, 215, 215);
+}
+.accordian .accordian-wrap .active .accordion-title {
+    padding: 0px 0px;
+}
+.accordian .accordian-wrap .accordion-title {
+  padding: 20px 0px;
+  color: rgb(5, 6, 7);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+.accordian .accordian-wrap figure {
+    max-width: 340px;
+    /* margin: 20px auto; */
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0s ease-in;
+}
+
+.accordian .accordian-wrap .accordion-content {
+  padding-top: 10px;
+  color: rgb(51, 51, 51);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  /* display: none; */
+  max-height: 0; 
+  overflow: hidden; 
+  transition: max-height 0s ease-in;
+}
+.accordian .accordian-wrap a {
+    margin-top: 20px;
+    color: rgb(221, 7, 53);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    /* display: none; */
+}
+.accordian .accordian-wrap .link{
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0s ease-in;
+}
+.accordian .accordian-wrap .accordion-item.active .accordion-content,.accordian .accordian-wrap .accordion-item.active .link {
+  /* display: block; */
+  max-height: 500px;
+  transition: max-height 0.6s ease-out;
+}
+.accordian .accordian-wrap .accordion-item.active .link {
+    margin-top: 20px        ;
+}
+/* General Reset */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  } */
+  
+  /* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f8f8;
+  } */
+  
+  
+  /* Image Carousel (Left) */
+  
+  
+  
+
+  
+  
+  
+  /* Accordion (Right) */
+  
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
 /* testimonial section */
+.testimonial{
+    padding: 80px 0px 30px 0px;
+}
 .testimonial .carousal-wrap{
     max-width:var(--max-width);
     position: relative;
+    padding-top: 40px;
+}
+.testimonial .title{
+    color: rgb(2, 10, 25);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 52px;
+    text-align: center;
+    padding-bottom: 20px;
 }
 .testimonial .carousel {
     position: relative;
@@ -596,9 +790,161 @@ header .side-header-btn.trial:hover{
     cursor: not-allowed;
 }
 
+/* logo slider section */
+.logo-container{
+    padding: 30px 0px 80px 0px;
+}
+.logo-container .logo-slider-container {
+    overflow: hidden;
+    max-width:var(--max-width);
+    /* width: 100%; */
+    position: relative;
+}
+.logo-container .logo-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.logo-container .logo-slide {
+    flex: 0 0 auto;
+    max-width: 186px;
+    width: calc(100% / 7);  /* Show 7 logos on desktop */
+    /* padding: 10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-container .logo-slider-container::before,
+.logo-container .logo-slider-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width:100px; /* Adjust width as needed */
+  z-index: 1;
+}
+
+.logo-container .logo-slider-container::before {
+  left: -2px;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.logo-container .logo-slider-container::after {
+  right: -2px;
+  background: linear-gradient(to left, white, transparent);
+}
+  
+  /* Responsive breakpoints */
+  /* @media (max-width: 991px) {
+    .logo-slide {
+      width: calc(100% / 3); 
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .logo-slide {
+      width: 100%; 
+    }
+  } */
+    
+/* Get Hexnode Section  */
+.cta-section{
+    background-color: rgb(2, 10, 25);
+    padding: 80px 0px;
+}
+.cta-section .wrapper{
+    max-width:var(--max-width);
+}
+.cta-section .content{
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.cta-section .wrapper h2{
+    color: rgb(255, 255, 255);
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 54px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cta-section .wrapper a{
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 24px;
+    width: 302px;
+    height: 54px;
+    background-color: rgb(221, 7, 53);
+    border-radius: 3px;
+}
+.cta-section .wrapper a:hover{
+    background-color: rgb(187, 2, 42);
+}
+    
+/* footer */
+footer{
+    padding: 20px 0px;
+}
+footer .wrapper{
+    max-width:var(--max-width);
+}
+footer ul a{
+    color: rgb(85, 101, 117);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+}
+footer ul a:hover{
+    color: rgb(2, 10, 25);
+}
+footer .rights p{
+    color: rgb(85, 101, 117);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 24px;
+}
+footer ul li {
+  display: inline;
+}
+
+footer ul li:not(:last-child)::after {
+  content: " -";
+  margin:0px 5px 0px 2px;
+}
+  
+
+/* Message Icon Section  */
+.icon-background{
+    position: fixed;
+    z-index: 99;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    background-color: rgb(46, 114, 246);
+    border-radius: 50%;
+
+}
+.icon-background svg{
+    fill: white;
+    width: 24px;
+}
 
 
 /* Media Tags */
+@media (min-width:1400px){
+    header:hover {
+        background-color: white;
+    }
+    header:hover svg{
+        fill: rgb(2, 10, 25);
+    }
+    header:hover ul a{
+        color: rgb(2, 10, 25);
+    }
+}
 @media (max-width:1480px){
     /* functions section */
     .functions .grid-wrapper .grid{
@@ -674,6 +1020,11 @@ header .side-header-btn.trial:hover{
     .testimonial .carousel {
         width: 80%;
     }
+    /* logo slider section */
+    .logo-container .logo-slide {
+        max-width: 185px;
+        width: calc(100% / 6);
+    }
 }
 
 @media (max-width:1028px){
@@ -683,6 +1034,9 @@ header .side-header-btn.trial:hover{
         width: 46%;
     }
     /* testimonial section */
+    .testimonial{
+        margin-bottom: 100px;
+    }
     .testimonial .carousel {
         width: 90%;
     }
@@ -699,6 +1053,11 @@ header .side-header-btn.trial:hover{
         right:unset;
         left:52%;
         /* transform: translateX(-60%); */
+    }
+    /* logo slider section */
+    .logo-container .logo-slide {
+        max-width: 172px;
+        width: calc(100% / 5);
     }
 }
 
@@ -789,6 +1148,35 @@ header .side-header-btn.trial:hover{
     .benifits .last-link {
         display: block;
     }
+
+    /* Accordion section  */
+    .accordian{
+        padding: 60px 0px;
+    }
+    .accordian .accordian-wrap{
+        padding-top: 0px;
+    }
+    .accordian .accordian-wrap .image-container {
+        display: none;
+    }
+    .accordian .accordian-wrap .accordion-item.active figure {
+        max-height: 500px; /* Set a max-height that is large enough for the content */
+        transition: max-height 0.4s ease-out;
+        margin: 20px auto;
+    }
+    .accordian .accordian-wrap .accordion {
+        min-height: 1030px;
+    }
+    .accordian .outer-wrapper p{
+        display: none;
+    }
+    .accordian .outer-wrapper h2{
+        font-size: 32px;
+        line-height: 38px;
+    }
+
+
+
     /* testimonial section */
     .testimonial .carousel-slide {
         flex-direction: column;
@@ -821,7 +1209,21 @@ header .side-header-btn.trial:hover{
         max-width: unset;
         max-height: unset;
     }
+    /* logo slider section */
+    .logo-container .logo-slide {
+        max-width: 158px;
+        width: calc(100% / 4);
+    }
 
+    /* footer  */
+    footer .wrapper{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    footer{
+        padding: 30px 0px;
+    }
 
 
 
@@ -838,6 +1240,7 @@ header .side-header-btn.trial:hover{
     }
     .hero-banner h2{
         font-size: 34px;
+        line-height: 38px;
     }
     .hero-banner .email-input{
         display: flex;
@@ -865,6 +1268,7 @@ header .side-header-btn.trial:hover{
     .benifits h2{
         font-size: 32px;
         width: 88%;
+        line-height: 38px;
     }
     /* functions section */
     .functions{
@@ -891,15 +1295,40 @@ header .side-header-btn.trial:hover{
         font-size: 32px;
         padding-bottom: 40px;
         width: 88%;
+        line-height: 38px;
     }
 
     /* testimonial section */
+    .testimonial{
+        padding: 60px 0px 20px 0px;
+    }
     .testimonial .carousel-slide .review .testimonial-des h4{
         font-size: 16px;
+    }
+    .testimonial .title{
+        font-size: 32px;
     }
     .testimonial .carousel {
         width: 76%;
         max-width: 280px;
     }
-
+    /* logo slider section */
+    .logo-container{
+        padding: 20px 0px 60px 0px;
+    }
+    .logo-container .logo-slide {
+        max-width: 130px;
+        width: calc(100% / 3);
+    }
+    /* Get Hexnode Section  */
+    .cta-section{
+        padding: 50px 0px;
+    }
+    .cta-section .wrapper a{
+        width: 325px;
+    }
+    .cta-section .wrapper h2{
+        font-size: 30px;
+        line-height: 38px;
+    }
 }

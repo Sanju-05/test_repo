@@ -15,14 +15,18 @@ document.addEventListener("scroll", function () {
 
 
 const burgerMenu = document.getElementById("burgerMenu");
+const page_cover = document.getElementById("page-cover");
 const sideMenu = document.querySelector('.side-menu');
 const header1 = document.querySelector("header");
+const body = document.querySelector("body");
 
 burgerMenu.addEventListener("click", () => {
     const isOpen = burgerMenu.classList.contains("open");
 
     burgerMenu.classList.toggle("open"); // Toggle burger icon
+    page_cover.classList.toggle("open"); // Toggle burger icon
     sideMenu.classList.toggle("open"); // Toggle the 'open' class to slide in/out
+    body.classList.toggle("open"); // Toggle the 'open' class to slide in/out
 
     // Check if the header should have the "scrolled" class or revert back to default
     if (!isOpen) {
@@ -132,3 +136,183 @@ carouselContainer.addEventListener('mouseleave', () => startAutoScroll());
 updateCarousel();
 handleSwipe();
 startAutoScroll();
+
+
+
+const accordionItems = document.querySelectorAll('.accordion-item');
+const imageTrack = document.querySelector('.image-track');
+const images = document.querySelectorAll('.image'); // Select all images
+const imageContainer = document.querySelector('.image-container'); // Select the image container
+
+// Function to get the displayed height of an image
+function getImageHeight(image) {
+  return image.clientHeight || image.offsetHeight; // clientHeight returns the displayed height
+}
+
+// Function to update the image container height
+function updateImageContainerHeight() {
+  const imageHeight = getImageHeight(images[0]); // Get the displayed height of the first image
+  imageContainer.style.height = `${imageHeight}px`; // Set the height of the container
+}
+
+// Function to update the image dimensions
+function updateImageDimensions() {
+  // Force a reflow by accessing the layout properties
+  images.forEach(image => {
+    image.style.display = 'none'; // Temporarily hide the image
+    image.offsetHeight; // Trigger a reflow
+    image.style.display = ''; // Show the image again
+  });
+}
+
+// Wait until the images are loaded and then calculate the height
+window.addEventListener('load', () => {
+  // Initial height update after images are loaded
+  updateImageContainerHeight();
+  updateImageDimensions(); // Force the image to update its size
+
+  // Add click event to each accordion item
+  accordionItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      // Remove active class from all accordion items
+      accordionItems.forEach((acc) => acc.classList.remove('active'));
+
+      // Add active class to the clicked accordion item
+      item.classList.add('active');
+
+      // Calculate the translateY value based on the dynamic image height
+      const translateY = index * -getImageHeight(images[0]);
+
+      // Move the image container (vertical carousel)
+      imageTrack.style.transform = `translateY(${translateY}px)`;
+
+      // Update the image container height
+      updateImageContainerHeight();
+      updateImageDimensions(); // Force image resizing after accordion click
+    });
+  });
+});
+
+// Update the height and image dimensions on window resize
+window.addEventListener('resize', () => {
+  updateImageContainerHeight();  // Update container height based on image size
+  updateImageDimensions();  // Ensure image is correctly sized after resize
+});
+
+
+
+
+
+// testimonial
+document.addEventListener('DOMContentLoaded', function () {
+  const slider = document.querySelector('.logo-slider');
+  const slides = Array.from(document.querySelectorAll('.logo-slide'));
+  const totalSlides = slides.length;
+  let currentIndex = 0;
+
+  // Get the width of each slide dynamically
+  const slideWidth = slides[0].offsetWidth;
+
+  // Clone slides to create an infinite loop
+  slides.forEach((slide) => {
+    const clone = slide.cloneNode(true);
+    slider.appendChild(clone);
+  });
+
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let animationID = 0;
+  let autoSlideInterval;
+
+  // Auto-carousel functionality
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      moveToNextSlide();
+    }, 3000);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  // Function to move to the next slide
+  function moveToNextSlide() {
+    currentIndex++;
+    updateSliderPosition();
+  }
+
+  // Function to move to the previous slide
+  function moveToPrevSlide() {
+    currentIndex--;
+    updateSliderPosition();
+  }
+
+  // Function to update the slider position
+  function updateSliderPosition() {
+    slider.style.transition = 'transform 0.5s ease-in-out';
+    slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+
+    if (currentIndex >= totalSlides) {
+      setTimeout(() => {
+        slider.style.transition = 'none';
+        currentIndex = 0;
+        slider.style.transform = `translateX(0px)`;
+      }, 500);
+    } else if (currentIndex < 0) {
+      setTimeout(() => {
+        slider.style.transition = 'none';
+        currentIndex = totalSlides - 1;
+        slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+      }, 500);
+    }
+  }
+
+  // Touch events for swipe functionality
+  slider.addEventListener('touchstart', (e) => {
+    stopAutoSlide();
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    animationID = requestAnimationFrame(animate);
+  });
+
+  slider.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const deltaX = currentX - startX;
+    currentTranslate = prevTranslate + deltaX;
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+  });
+
+  slider.addEventListener('touchend', () => {
+    isDragging = false;
+    cancelAnimationFrame(animationID);
+
+    const movedBy = currentTranslate - prevTranslate;
+
+    if (movedBy < -50) {
+      moveToNextSlide();
+    } else if (movedBy > 50) {
+      moveToPrevSlide();
+    } else {
+      slider.style.transform = `translateX(${prevTranslate}px)`;
+    }
+
+    prevTranslate = -currentIndex * slideWidth;
+
+    startAutoSlide();
+  });
+
+  // Handle animation
+  function animate() {
+    if (isDragging) {
+      requestAnimationFrame(animate);
+    }
+  }
+
+  // Start auto-carousel
+  startAutoSlide();
+});
+
+

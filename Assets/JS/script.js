@@ -68,12 +68,21 @@ carouselContainer.addEventListener('mouseleave', () => startAutoScroll());
 window.addEventListener('load', updateCarousel);
 startAutoScroll();
 
-// Swipe functionality
+// Swipe functionality for touch and mouse events
 (() => {
   let startX = 0;
+
+  // For touch events
   carouselContainer.addEventListener('touchstart', e => (startX = e.touches[0].clientX));
   carouselContainer.addEventListener('touchend', e => {
       const diffX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(diffX) > 50) moveSlide(diffX > 0 ? -1 : 1);
+  });
+
+  // For mouse events
+  carouselContainer.addEventListener('mousedown', e => (startX = e.clientX));
+  carouselContainer.addEventListener('mouseup', e => {
+      const diffX = e.clientX - startX;
       if (Math.abs(diffX) > 50) moveSlide(diffX > 0 ? -1 : 1);
   });
 })();
